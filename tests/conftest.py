@@ -4,6 +4,11 @@ from pathlib import Path
 import pytest
 
 
+@pytest.fixture(autouse=True)
+def enable_test_database_paths(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("ESTATE_INTELLIGENCE_TEST_MODE", "1")
+
+
 @pytest.fixture()
 def dashboard_database(tmp_path: Path) -> Path:
     """Create a minimal deterministic dashboard evidence database."""

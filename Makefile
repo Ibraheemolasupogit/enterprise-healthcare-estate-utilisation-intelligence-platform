@@ -1,7 +1,7 @@
 PYTHON ?= python3
 PYTHONPATH ?= src
 
-.PHONY: install lint format format-check typecheck test coverage validate-repository validate-config validate-sql validate-docs scan-secrets validate-structure generate-data generate-sample-data verify-synthetic-data test-synthetic-data initialise-database ingest-data link-entities build-curated-database verify-database export-ingestion-evidence run-data-quality verify-data-quality export-data-quality-evidence calculate-utilisation verify-utilisation export-utilisation-evidence run-forecasting verify-forecasting export-forecast-evidence run-scenarios verify-scenarios export-scenario-evidence run-optimisation verify-optimisation export-optimisation-evidence run-simulation verify-simulation export-simulation-evidence run-financial-analysis verify-financial-analysis export-financial-evidence dashboard dashboard-check dashboard-check-fast test-dashboard generate-communication-evidence verify-communication-evidence export-communication-evidence test-communication communication-check-fast run-assurance verify-assurance export-assurance-evidence assurance-check-fast assurance-fast assurance-full assurance-report release-evidence verify-release-evidence portfolio-check handover-check final-audit portfolio-package final-quality ci test-ingestion test-linking test-data-quality test-utilisation test-forecasting test-scenarios test-optimisation test-simulation test-financial quality clean
+.PHONY: install lint format format-check typecheck test coverage test-checkout-safe test-canonical-evidence test-full validate-repository validate-config validate-sql validate-docs scan-secrets validate-structure generate-data generate-sample-data verify-synthetic-data test-synthetic-data initialise-database ingest-data link-entities build-curated-database verify-database export-ingestion-evidence run-data-quality verify-data-quality export-data-quality-evidence calculate-utilisation verify-utilisation export-utilisation-evidence run-forecasting verify-forecasting export-forecast-evidence run-scenarios verify-scenarios export-scenario-evidence run-optimisation verify-optimisation export-optimisation-evidence run-simulation verify-simulation export-simulation-evidence run-financial-analysis verify-financial-analysis export-financial-evidence dashboard dashboard-check dashboard-check-fast test-dashboard generate-communication-evidence verify-communication-evidence export-communication-evidence test-communication communication-check-fast run-assurance verify-assurance export-assurance-evidence assurance-check-fast assurance-fast assurance-full assurance-report release-evidence verify-release-evidence portfolio-check handover-check final-audit portfolio-package final-quality ci test-ingestion test-linking test-data-quality test-utilisation test-forecasting test-scenarios test-optimisation test-simulation test-financial quality clean
 
 install:
 	$(PYTHON) -m pip install -e ".[dev]" || $(PYTHON) -m pip install -e . -r requirements-dev.txt
@@ -19,6 +19,15 @@ typecheck:
 	$(PYTHON) -m mypy src dashboard tests
 
 test:
+	$(PYTHON) -m pytest
+
+test-checkout-safe:
+	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m pytest --no-cov tests/unit tests/contract tests/integration tests/end_to_end --ignore=tests/contract/test_communication_generated_output_contracts.py --ignore=tests/contract/test_portfolio_contracts.py --ignore=tests/unit/test_final_audit.py --ignore=tests/unit/test_handover_catalogue.py --ignore=tests/unit/test_portfolio_language_controls.py --ignore=tests/unit/test_portfolio_manifest.py --ignore=tests/integration/test_assurance_evidence_database.py --ignore=tests/integration/test_assurance_pipeline.py --ignore=tests/integration/test_communication_evidence_database.py --ignore=tests/integration/test_communication_pipeline.py --ignore=tests/integration/test_handover_assets.py --ignore=tests/integration/test_portfolio_assets.py --ignore=tests/end_to_end/test_final_portfolio_pack.py --ignore=tests/end_to_end/test_generate_communication_evidence.py --ignore=tests/end_to_end/test_run_assurance.py
+
+test-canonical-evidence:
+	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m pytest --no-cov tests/contract/test_communication_generated_output_contracts.py tests/contract/test_portfolio_contracts.py tests/unit/test_final_audit.py tests/unit/test_handover_catalogue.py tests/unit/test_portfolio_language_controls.py tests/unit/test_portfolio_manifest.py tests/integration/test_assurance_evidence_database.py tests/integration/test_assurance_pipeline.py tests/integration/test_communication_evidence_database.py tests/integration/test_communication_pipeline.py tests/integration/test_handover_assets.py tests/integration/test_portfolio_assets.py tests/end_to_end/test_final_portfolio_pack.py tests/end_to_end/test_generate_communication_evidence.py tests/end_to_end/test_run_assurance.py
+
+test-full:
 	$(PYTHON) -m pytest
 
 coverage:
