@@ -1,7 +1,7 @@
 PYTHON ?= python3
 PYTHONPATH ?= src
 
-.PHONY: install lint format format-check typecheck test coverage validate-repository validate-config validate-sql validate-docs scan-secrets validate-structure generate-data generate-sample-data verify-synthetic-data test-synthetic-data initialise-database ingest-data link-entities build-curated-database verify-database export-ingestion-evidence run-data-quality verify-data-quality export-data-quality-evidence calculate-utilisation verify-utilisation export-utilisation-evidence run-forecasting verify-forecasting export-forecast-evidence run-scenarios verify-scenarios export-scenario-evidence run-optimisation verify-optimisation export-optimisation-evidence run-simulation verify-simulation export-simulation-evidence run-financial-analysis verify-financial-analysis export-financial-evidence dashboard dashboard-check test-dashboard generate-communication-evidence verify-communication-evidence export-communication-evidence test-communication run-assurance verify-assurance export-assurance-evidence assurance-fast assurance-full assurance-report release-evidence verify-release-evidence portfolio-check handover-check final-audit portfolio-package final-quality ci test-ingestion test-linking test-data-quality test-utilisation test-forecasting test-scenarios test-optimisation test-simulation test-financial quality clean
+.PHONY: install lint format format-check typecheck test coverage validate-repository validate-config validate-sql validate-docs scan-secrets validate-structure generate-data generate-sample-data verify-synthetic-data test-synthetic-data initialise-database ingest-data link-entities build-curated-database verify-database export-ingestion-evidence run-data-quality verify-data-quality export-data-quality-evidence calculate-utilisation verify-utilisation export-utilisation-evidence run-forecasting verify-forecasting export-forecast-evidence run-scenarios verify-scenarios export-scenario-evidence run-optimisation verify-optimisation export-optimisation-evidence run-simulation verify-simulation export-simulation-evidence run-financial-analysis verify-financial-analysis export-financial-evidence dashboard dashboard-check dashboard-check-fast test-dashboard generate-communication-evidence verify-communication-evidence export-communication-evidence test-communication communication-check-fast run-assurance verify-assurance export-assurance-evidence assurance-check-fast assurance-fast assurance-full assurance-report release-evidence verify-release-evidence portfolio-check handover-check final-audit portfolio-package final-quality ci test-ingestion test-linking test-data-quality test-utilisation test-forecasting test-scenarios test-optimisation test-simulation test-financial quality clean
 
 install:
 	$(PYTHON) -m pip install -e ".[dev]" || $(PYTHON) -m pip install -e . -r requirements-dev.txt
@@ -142,6 +142,9 @@ dashboard:
 dashboard-check:
 	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m estate_intelligence.cli dashboard-check --database data/processed/estate_intelligence.db
 
+dashboard-check-fast:
+	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m pytest --no-cov tests/unit/test_dashboard_formatting.py tests/unit/test_dashboard_queries.py tests/unit/test_dashboard_services.py tests/unit/test_dashboard_filters.py tests/unit/test_dashboard_alerts.py tests/unit/test_makefile_dashboard_fast.py tests/integration/test_dashboard_data_access.py tests/integration/test_dashboard_pages.py tests/contract/test_dashboard_contracts.py
+
 test-dashboard:
 	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m pytest --no-cov tests/unit/test_dashboard_formatting.py tests/unit/test_dashboard_queries.py tests/unit/test_dashboard_services.py tests/unit/test_dashboard_filters.py tests/unit/test_dashboard_alerts.py tests/integration/test_dashboard_data_access.py tests/integration/test_dashboard_pages.py tests/contract/test_dashboard_contracts.py tests/end_to_end/test_dashboard_smoke.py
 
@@ -157,6 +160,9 @@ export-communication-evidence:
 test-communication:
 	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m pytest --no-cov tests/unit/test_communication_models.py tests/unit/test_audience_rendering.py tests/unit/test_option_catalogue.py tests/unit/test_challenge_response.py tests/unit/test_revision_logic.py tests/unit/test_decision_record.py tests/unit/test_claim_mapping.py tests/unit/test_language_controls.py tests/integration/test_communication_pipeline.py tests/integration/test_communication_evidence_database.py tests/contract/test_communication_contracts.py tests/end_to_end/test_generate_communication_evidence.py
 
+communication-check-fast:
+	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m pytest --no-cov tests/unit/test_communication_models.py tests/unit/test_audience_rendering.py tests/unit/test_challenge_response.py tests/unit/test_revision_logic.py tests/unit/test_decision_record.py tests/unit/test_language_controls.py tests/contract/test_communication_contracts.py
+
 run-assurance:
 	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m estate_intelligence.cli run-assurance --database data/processed/estate_intelligence.db --config config/assurance.yaml --output-dir outputs/assurance --profile canonical --rebuild
 
@@ -166,7 +172,10 @@ verify-assurance:
 export-assurance-evidence:
 	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m estate_intelligence.cli export-assurance-evidence --database data/processed/estate_intelligence.db --output-dir outputs/assurance
 
-assurance-fast: lint format-check typecheck validate-repository validate-config validate-sql validate-docs scan-secrets dashboard-check verify-communication-evidence run-assurance verify-assurance
+assurance-check-fast:
+	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m pytest --no-cov tests/unit/test_assurance_catalogue.py tests/unit/test_assurance_models.py tests/unit/test_assurance_checks.py tests/unit/test_release_gates.py tests/unit/test_reproducibility_assurance.py tests/unit/test_security_scan.py tests/contract/test_assurance_contracts.py
+
+assurance-fast: lint format-check typecheck validate-repository validate-config validate-sql validate-docs scan-secrets dashboard-check-fast communication-check-fast assurance-check-fast
 
 assurance-full: generate-sample-data verify-synthetic-data build-curated-database verify-database export-ingestion-evidence run-data-quality verify-data-quality export-data-quality-evidence calculate-utilisation verify-utilisation export-utilisation-evidence run-forecasting verify-forecasting export-forecast-evidence run-scenarios verify-scenarios export-scenario-evidence run-optimisation verify-optimisation export-optimisation-evidence run-simulation verify-simulation export-simulation-evidence run-financial-analysis verify-financial-analysis export-financial-evidence dashboard-check generate-communication-evidence verify-communication-evidence export-communication-evidence run-assurance verify-assurance
 

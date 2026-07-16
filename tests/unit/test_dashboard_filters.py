@@ -2,11 +2,9 @@ from pathlib import Path
 
 from dashboard.data.services import DashboardService
 
-DATABASE = Path("data/processed/estate_intelligence.db")
 
-
-def test_dashboard_building_and_room_filters_are_parameterised() -> None:
-    service = DashboardService(DATABASE)
+def test_dashboard_building_and_room_filters_are_parameterised(dashboard_database: Path) -> None:
+    service = DashboardService(dashboard_database)
 
     buildings = service.get_estate_portfolio({"site_id": "SITE-01"})
     rooms = service.get_room_utilisation({"protected_capacity_flag": 1})

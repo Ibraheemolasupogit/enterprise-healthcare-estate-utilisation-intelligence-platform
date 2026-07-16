@@ -9,11 +9,9 @@ from typer.testing import CliRunner
 
 from estate_intelligence.cli import app
 
-DATABASE = Path("data/processed/estate_intelligence.db")
 
-
-def test_dashboard_cli_check_passes() -> None:
-    result = CliRunner().invoke(app, ["dashboard-check", "--database", str(DATABASE)])
+def test_dashboard_cli_check_passes(dashboard_database: Path) -> None:
+    result = CliRunner().invoke(app, ["dashboard-check", "--database", str(dashboard_database)])
 
     assert result.exit_code == 0
     assert "Dashboard check passed." in result.output
