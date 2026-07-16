@@ -12,6 +12,7 @@ This document summarises the final synthetic repository layout for Milestone 14.
 - `handover/` contains operational runbooks and final handover guidance.
 - `outputs/` contains generated synthetic evidence exports.
 - `portfolio/` contains presentation-ready synthetic portfolio materials, diagrams, screenshot note, and manifest.
+- `reports/` contains tracked audience-specific report directories for future synthetic decision-support report outputs; canonical generated evidence remains under `outputs/`.
 - `src/estate_intelligence/` contains Python packages for each evidence stage.
 - `tests/` contains unit, integration, contract, and end-to-end validation.
 

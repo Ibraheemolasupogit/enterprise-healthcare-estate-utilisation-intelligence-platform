@@ -28,4 +28,7 @@ reports/**/*
 powerbi/screenshots/*
 dashboard/.streamlit/
 !**/.gitkeep
+!reports/
+!reports/**/
 !reports/**/.gitkeep
+!reports/**/README.md

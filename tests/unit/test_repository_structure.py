@@ -461,6 +461,7 @@ def test_no_accidental_real_data_or_generated_evidence_files() -> None:
         for path in evidence_root.rglob("*")
         if path.is_file()
         and path.name != ".gitkeep"
+        and path.name != "README.md"
         and "outputs/ingestion" not in path.as_posix()
         and "outputs/data_quality" not in path.as_posix()
         and "outputs/utilisation" not in path.as_posix()
