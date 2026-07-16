@@ -1,25 +1,29 @@
 from pathlib import Path
 
-
-def test_communication_outputs_do_not_claim_approval_or_real_meetings() -> None:
-    output_dir = Path("outputs/communication")
-    combined = "\n".join(
-        path.read_text() for path in output_dir.glob("*") if path.is_file()
-    ).lower()
-
-    assert "not_approved" in combined
-    assert "no final recommendation" in combined
-    assert "synthetic challenge scenario" in combined
-    assert "board approved" not in combined
-    assert "stakeholders agreed" not in combined
-    assert "must implement" not in combined
-    assert "guaranteed savings" not in combined.replace("no guaranteed savings", "")
+from estate_intelligence.reporting.service import load_communication_config
 
 
-def test_communication_outputs_retain_simulation_and_financial_caveats() -> None:
-    text = Path("outputs/communication/executive_options_paper.md").read_text()
-    finance = Path("outputs/communication/finance_brief.md").read_text()
+def test_communication_config_has_required_non_approval_statuses() -> None:
+    config = load_communication_config(Path("config/communication.yaml"))
 
-    assert "All `24` simulated resilience rows failed" in text
-    assert "not realisable without mitigation" in text
-    assert "risk-adjusted NPV remains `0.0`" in finance
+    schema = config.document["decision_record_schema"]
+
+    assert schema["decision_status"] == "awaiting_governance_decision"
+    assert schema["approval_status"] == "not_approved"
+
+
+def test_communication_config_contains_required_audiences_and_language_controls() -> None:
+    config = load_communication_config(Path("config/communication.yaml"))
+
+    assert {audience["audience_id"] for audience in config.document["audience_catalogue"]} == {
+        "executive",
+        "clinical_operational",
+        "finance",
+        "estates",
+        "technical",
+    }
+    assert config.document["status_language_rules"]["implementation_status"] == "not_approved"
+    assert (
+        config.document["risk_language_rules"]["resilience_failed_suffix"]
+        == "not realisable without mitigation"
+    )

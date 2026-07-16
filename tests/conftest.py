@@ -121,10 +121,47 @@ def dashboard_database(tmp_path: Path) -> Path:
             );
             CREATE TABLE evidence_financial_comparison (
               financial_run_id TEXT, financial_case_id TEXT, assumption_set TEXT,
-              baseline_recurring_cost REAL, npv REAL, risk_adjusted_npv REAL
+              baseline_recurring_cost REAL, npv REAL, risk_adjusted_npv REAL,
+              readiness_status TEXT, simple_payback_year TEXT
             );
             INSERT INTO evidence_financial_comparison VALUES (
-              'FIN-fixture', 'FIN-01', 'base', 1000, 10, 0
+              'FIN-fixture', 'FIN-01', 'base', 1000, 10, 0,
+              'not_realisable_without_mitigation', 'not_reached'
+            );
+            INSERT INTO evidence_financial_comparison VALUES
+              (
+                'FIN-fixture', 'case_a_current_estate_baseline', 'base',
+                1000, 0, 0, 'not_realisable_without_mitigation', 'not_reached'
+              ),
+              (
+                'FIN-fixture', 'case_b_light_consolidation', 'base',
+                1000, 10, 0, 'not_realisable_without_mitigation', 'not_reached'
+              ),
+              (
+                'FIN-fixture', 'case_c_site_consolidation', 'base',
+                1000, 20, 0, 'not_realisable_without_mitigation', 'not_reached'
+              ),
+              (
+                'FIN-fixture', 'case_d_hybrid_redesign', 'base',
+                1000, 30, 0, 'not_realisable_without_mitigation', 'not_reached'
+              ),
+              (
+                'FIN-fixture', 'case_e_flexible_room_optimisation', 'base',
+                1000, 40, 0, 'not_realisable_without_mitigation', 'not_reached'
+              ),
+              (
+                'FIN-fixture', 'case_f_flexible_site_optimisation', 'base',
+                1000, 50, 0, 'not_realisable_without_mitigation', 'not_reached'
+              ),
+              (
+                'FIN-fixture', 'case_g_hybrid_optimisation', 'base',
+                1000, 60, 0, 'not_realisable_without_mitigation', 'not_reached'
+              );
+            CREATE TABLE evidence_financial_sensitivity (
+              financial_run_id TEXT, financial_case_id TEXT, tornado_impact REAL
+            );
+            CREATE TABLE evidence_financial_break_even (
+              financial_run_id TEXT, financial_case_id TEXT, break_even_metric TEXT
             );
             CREATE TABLE evidence_financial_confidence (
               financial_run_id TEXT, financial_case_id TEXT, readiness_status TEXT
@@ -139,6 +176,26 @@ def dashboard_database(tmp_path: Path) -> Path:
             );
             INSERT INTO evidence_simulation_workforce_metrics VALUES (
               'SIM-fixture', 'SIM-CASE-01', 'EXP-01', 'SVC-01', 1.2, 3, 1
+            );
+            CREATE TABLE evidence_simulation_summary (
+              simulation_run_id TEXT, simulation_case_id TEXT, experiment_id TEXT
+            );
+            INSERT INTO evidence_simulation_summary VALUES (
+              'SIM-fixture', 'SIM-CASE-01', 'EXP-01'
+            );
+            CREATE TABLE evidence_optimisation_comparison (
+              optimisation_run_id TEXT, case_id TEXT, solver_status TEXT
+            );
+            INSERT INTO evidence_optimisation_comparison VALUES
+              ('OPT-fixture', 'flexible_room_optimisation', 'optimal'),
+              ('OPT-fixture', 'flexible_site_optimisation', 'optimal'),
+              ('OPT-fixture', 'hybrid_optimisation', 'optimal');
+            CREATE TABLE evidence_optimisation_building_status (
+              optimisation_run_id TEXT, case_id TEXT, building_id TEXT,
+              potentially_releasable_flag INTEGER
+            );
+            INSERT INTO evidence_optimisation_building_status VALUES (
+              'OPT-fixture', 'hybrid_optimisation', 'BLD-01', 1
             );
             """
         )

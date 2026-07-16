@@ -158,10 +158,10 @@ export-communication-evidence:
 	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m estate_intelligence.cli export-communication-evidence --database data/processed/estate_intelligence.db --output-dir outputs/communication
 
 test-communication:
-	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m pytest --no-cov tests/unit/test_communication_models.py tests/unit/test_audience_rendering.py tests/unit/test_option_catalogue.py tests/unit/test_challenge_response.py tests/unit/test_revision_logic.py tests/unit/test_decision_record.py tests/unit/test_claim_mapping.py tests/unit/test_language_controls.py tests/integration/test_communication_pipeline.py tests/integration/test_communication_evidence_database.py tests/contract/test_communication_contracts.py tests/end_to_end/test_generate_communication_evidence.py
+	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m pytest --no-cov tests/unit/test_communication_models.py tests/unit/test_audience_rendering.py tests/unit/test_option_catalogue.py tests/unit/test_challenge_response.py tests/unit/test_revision_logic.py tests/unit/test_decision_record.py tests/unit/test_claim_mapping.py tests/unit/test_language_controls.py tests/unit/test_communication_rendered_caveats.py tests/integration/test_communication_pipeline.py tests/integration/test_communication_evidence_database.py tests/contract/test_communication_contracts.py tests/contract/test_communication_generated_output_contracts.py tests/end_to_end/test_generate_communication_evidence.py
 
 communication-check-fast:
-	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m pytest --no-cov tests/unit/test_communication_models.py tests/unit/test_audience_rendering.py tests/unit/test_challenge_response.py tests/unit/test_revision_logic.py tests/unit/test_decision_record.py tests/unit/test_language_controls.py tests/contract/test_communication_contracts.py
+	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m pytest --no-cov tests/unit/test_communication_models.py tests/unit/test_audience_rendering.py tests/unit/test_option_catalogue.py tests/unit/test_challenge_response.py tests/unit/test_revision_logic.py tests/unit/test_decision_record.py tests/unit/test_claim_mapping.py tests/unit/test_language_controls.py tests/unit/test_communication_rendered_caveats.py tests/contract/test_communication_contracts.py
 
 run-assurance:
 	PYTHONPATH=$(PYTHONPATH):. $(PYTHON) -m estate_intelligence.cli run-assurance --database data/processed/estate_intelligence.db --config config/assurance.yaml --output-dir outputs/assurance --profile canonical --rebuild

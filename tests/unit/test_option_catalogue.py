@@ -9,9 +9,9 @@ from estate_intelligence.reporting.service import (
 )
 
 
-def test_option_catalogue_is_complete_and_not_approved() -> None:
+def test_option_catalogue_is_complete_and_not_approved(dashboard_database: Path) -> None:
     config = load_communication_config(Path("config/communication.yaml"))
-    connection = sqlite3.connect("data/processed/estate_intelligence.db")
+    connection = sqlite3.connect(dashboard_database)
     connection.row_factory = sqlite3.Row
     lineage = resolve_run_lineage(connection)
     analytical = _load_analytical_evidence(connection, lineage)
