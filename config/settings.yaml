@@ -1,0 +1,23 @@
+contract_version: 1
+milestone_owner: "Milestone 1"
+purpose: "Default foundation runtime settings for local development."
+project:
+  name: "Enterprise Healthcare Estate Utilisation Intelligence Platform"
+  data_boundary: "synthetic-only"
+runtime:
+  default_environment: "development"
+  supported_environments:
+    - "development"
+    - "staging"
+    - "production"
+  log_level: "INFO"
+  random_seed: 20260714
+  timezone: "Europe/London"
+paths:
+  data_root: "data"
+  output_root: "outputs"
+  config_dir: "config"
+database:
+  url_placeholder: "sqlite:///./local-foundation-placeholder.db"
+  note: "Placeholder only; no production database is provisioned in Milestone 1."
+

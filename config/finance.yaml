@@ -1,0 +1,289 @@
+contract_version: 1
+milestone_owner: "Milestone 10"
+framework_version: "m10-v1"
+purpose: "Deterministic synthetic financial and sensitivity analysis evidence."
+finance:
+  consumed_from_milestone: 10
+  currency: "GBP"
+  analysis_boundary: "Synthetic non-audited decision-support evidence only; no guaranteed savings or final recommendation."
+currency: "GBP"
+price_basis: "synthetic 2025/26 constant-price planning basis"
+analysis_start_period: "2026/27"
+analysis_horizon_years: 5
+discount_rate: 0.035
+inflation_rate: 0.020
+annual_cost_escalation: 0.020
+benefit_ramp:
+  year_1: 0.40
+  year_2: 0.80
+  year_3_plus: 1.00
+implementation_phasing:
+  year_1_release_fraction: 0.50
+  year_2_release_fraction: 1.00
+  release_delay_years: 0
+source_run_requirements:
+  ingestion: required
+  quality: required
+  utilisation: required
+  forecasting: required
+  scenarios: required
+  optimisation: required
+  simulation: required
+financial_case_catalogue:
+  - financial_case_id: "case_a_current_estate_baseline"
+    label: "Case A: Current estate baseline"
+    source_type: "baseline"
+    source_case_id: "baseline"
+    simulation_case_id: "case_a_current_estate"
+  - financial_case_id: "case_b_light_consolidation"
+    label: "Case B: Light-consolidation heuristic scenario"
+    source_type: "scenario"
+    source_case_id: "light_consolidation"
+    simulation_case_id: "case_b_light_consolidation"
+  - financial_case_id: "case_c_site_consolidation"
+    label: "Case C: Site-consolidation heuristic scenario"
+    source_type: "scenario"
+    source_case_id: "site_consolidation"
+    simulation_case_id: "case_b_light_consolidation"
+  - financial_case_id: "case_d_hybrid_redesign"
+    label: "Case D: Hybrid heuristic scenario"
+    source_type: "scenario"
+    source_case_id: "hybrid_redesign"
+    simulation_case_id: "case_b_light_consolidation"
+  - financial_case_id: "case_e_flexible_room_optimisation"
+    label: "Case E: Flexible-room optimisation"
+    source_type: "optimisation"
+    source_case_id: "flexible_room"
+    simulation_case_id: "case_c_flexible_room_optimisation"
+  - financial_case_id: "case_f_flexible_site_optimisation"
+    label: "Case F: Flexible-site optimisation"
+    source_type: "optimisation"
+    source_case_id: "flexible_site"
+    simulation_case_id: "case_a_current_estate"
+  - financial_case_id: "case_g_hybrid_optimisation"
+    label: "Case G: Hybrid optimisation"
+    source_type: "optimisation"
+    source_case_id: "hybrid"
+    simulation_case_id: "case_d_hybrid_optimisation"
+recurring_cost_components:
+  lease_cost:
+    classification: "fixed"
+    release_allowed: true
+    variable_fraction: 0.0
+  maintenance_cost:
+    classification: "semi_variable"
+    release_allowed: true
+    variable_fraction: 0.35
+    retained_floor_fraction: 0.50
+  utility_cost:
+    classification: "variable"
+    release_allowed: true
+    variable_fraction: 1.0
+  security_cost:
+    classification: "fixed"
+    release_allowed: true
+    variable_fraction: 0.0
+  cleaning_cost:
+    classification: "semi_variable"
+    release_allowed: true
+    variable_fraction: 0.50
+    retained_floor_fraction: 0.40
+  business_rates:
+    classification: "fixed"
+    release_allowed: true
+    variable_fraction: 0.0
+excluded_recurring_components:
+  - "planned_capital_cost"
+  - "exit_cost"
+  - "relocation_cost"
+transition_cost_components:
+  lease_exit_cost:
+    coefficient: 0.35
+    timing_year: 1
+    uncertainty_low: 0.80
+    uncertainty_high: 1.30
+  relocation_cost:
+    coefficient_per_service_move: 7500.0
+    coefficient_per_released_building: 12000.0
+    timing_year: 1
+    uncertainty_low: 0.80
+    uncertainty_high: 1.35
+  refurbishment_cost:
+    coefficient_per_retained_building: 8500.0
+    coefficient_per_released_building: 4500.0
+    timing_year: 1
+    uncertainty_low: 0.75
+    uncertainty_high: 1.40
+  technology_enablement_cost:
+    coefficient_per_remote_hour: 18.0
+    minimum_case_cost: 10000.0
+    timing_year: 1
+    uncertainty_low: 0.70
+    uncertainty_high: 1.50
+  transition_staffing_cost:
+    coefficient_per_service_move: 4000.0
+    coefficient_per_released_building: 6000.0
+    timing_year: 1
+    uncertainty_low: 0.80
+    uncertainty_high: 1.40
+  change_management_cost:
+    coefficient_per_case: 15000.0
+    timing_year: 1
+    uncertainty_low: 0.75
+    uncertainty_high: 1.30
+  temporary_dual_running_cost:
+    coefficient_of_released_recurring_cost: 0.20
+    timing_year: 1
+    uncertainty_low: 0.80
+    uncertainty_high: 1.50
+  contingency_cost:
+    coefficient_of_transition_subtotal: 0.12
+    timing_year: 1
+    uncertainty_low: 0.50
+    uncertainty_high: 1.50
+lease_exit_rules:
+  enabled: true
+  only_when_building_released: true
+  use_curated_exit_cost_if_present: true
+  minimum_exit_cost_per_released_building: 5000.0
+relocation_cost_rules:
+  enabled: true
+  evidence_source: "scenario_service_moves_or_optimisation_service_moves"
+refurbishment_cost_rules:
+  enabled: true
+  retained_building_fraction: 0.15
+technology_enablement_rules:
+  enabled: true
+  remote_delivery_source: "optimisation_remote_demand_hours"
+transition_staffing_rules:
+  enabled: true
+  include_for_released_buildings: true
+operational_mitigation_costs:
+  additional_session_capacity:
+    annual_cost_per_blocked_contact: 180.0
+    applies_to_failure_types:
+      - "minimum_completion_rate"
+      - "maximum_unserved_contacts"
+  temporary_staffing:
+    annual_cost_per_workforce_bottleneck: 12000.0
+    applies_to_failure_types:
+      - "minimum_completion_rate"
+  overtime_reduction_measures:
+    annual_cost_per_overtime_hour: 45.0
+    applies_to_failure_types:
+      - "maximum_overtime_minutes"
+  scheduling_redesign:
+    annual_case_cost: 8500.0
+    applies_to_failure_types:
+      - "maximum_mean_wait_minutes"
+      - "maximum_p95_wait_minutes"
+  specialist_capacity_backup:
+    annual_case_cost: 6000.0
+    applies_to_failure_types:
+      - "minimum_contingency_remaining"
+  queue_management:
+    annual_case_cost: 5000.0
+    applies_to_failure_types:
+      - "maximum_mean_wait_minutes"
+      - "maximum_p95_wait_minutes"
+  technology_support:
+    annual_case_cost: 3500.0
+    applies_to_failure_types:
+      - "minimum_completion_rate"
+simulation_risk_adjustments:
+  failed_threshold_realisability_cap: 0.0
+  review_required_realisability_cap: 0.50
+  pass_realisability_cap: 1.0
+forecast_uncertainty_adjustments:
+  central_multiplier: 1.0
+  optimistic_multiplier: 0.95
+  pessimistic_multiplier: 1.10
+demand_growth_assumptions:
+  annual_growth_rate: 0.015
+  optimistic_growth_rate: 0.005
+  pessimistic_growth_rate: 0.030
+residual_value_policy:
+  include_residual_value: false
+  residual_value_fraction: 0.0
+payback_policy:
+  discounted_payback: true
+  not_reached_label: "not_reached"
+npv_policy:
+  discount_convention: "end_of_year"
+  include_year_zero_transition_cost: true
+sensitivity_dimensions:
+  demand_growth:
+    low: 0.005
+    base: 0.015
+    high: 0.030
+  implementation_cost:
+    low: 0.80
+    base: 1.00
+    high: 1.30
+  transition_cost:
+    low: 0.80
+    base: 1.00
+    high: 1.35
+  operational_mitigation_cost:
+    low: 0.75
+    base: 1.00
+    high: 1.50
+  benefit_ramp:
+    low: 0.70
+    base: 1.00
+    high: 1.15
+  discount_rate:
+    low: 0.020
+    base: 0.035
+    high: 0.060
+  cost_escalation:
+    low: 0.010
+    base: 0.020
+    high: 0.040
+  forecast_demand_basis:
+    low: 0.90
+    base: 1.00
+    high: 1.10
+  simulation_risk_adjustment:
+    low: 0.00
+    base: 0.00
+    high: 0.50
+  building_release_timing:
+    low: 0
+    base: 1
+    high: 2
+optimistic_case:
+  implementation_cost_multiplier: 0.80
+  transition_cost_multiplier: 0.80
+  mitigation_cost_multiplier: 0.75
+  benefit_ramp_multiplier: 1.15
+  demand_growth_rate: 0.005
+  release_delay_years: 0
+base_case:
+  implementation_cost_multiplier: 1.00
+  transition_cost_multiplier: 1.00
+  mitigation_cost_multiplier: 1.00
+  benefit_ramp_multiplier: 1.00
+  demand_growth_rate: 0.015
+  release_delay_years: 0
+pessimistic_case:
+  implementation_cost_multiplier: 1.30
+  transition_cost_multiplier: 1.35
+  mitigation_cost_multiplier: 1.50
+  benefit_ramp_multiplier: 0.70
+  demand_growth_rate: 0.030
+  release_delay_years: 1
+break_even_parameters:
+  transition_cost_tolerance: 0.01
+  annual_benefit_tolerance: 0.01
+  release_year_min: 1
+  release_year_max: 5
+confidence_thresholds:
+  high: 0.85
+  moderate: 0.65
+  low: 0.40
+evidence_output:
+  directory: "outputs/financial"
+  overwrite_requires_rebuild: true
+rounding:
+  decimal_places: 4

@@ -1,0 +1,96 @@
+contract_version: 1
+milestone_owner: "Milestone 7"
+framework_version: "m7-v1"
+purpose: "Deterministic scenario comparison configuration."
+analysis_horizon_months: 6
+source_run_requirements:
+  ingestion: required
+  quality: required
+  utilisation: required
+  forecasting: required
+scenario_catalogue:
+  - scenario_id: baseline
+    scenario_type: baseline
+    label: "Baseline"
+  - scenario_id: light_consolidation
+    scenario_type: light_consolidation
+    label: "Light consolidation"
+  - scenario_id: site_consolidation
+    scenario_type: site_consolidation
+    label: "Site consolidation"
+  - scenario_id: hybrid_redesign
+    scenario_type: hybrid_redesign
+    label: "Hybrid redesign"
+capacity_buffer: 0.10
+contingency_capacity: 0.15
+forecast_demand_basis: "face_to_face_room_hours"
+forecast_interval_basis: "upper_80"
+room_compatibility_rules:
+  enforce_room_type: true
+  enforce_capacity: true
+  enforce_specialist_equipment: true
+  require_accessible_room: false
+specialist_capacity_policy:
+  allow_specialist_release: false
+protected_capacity_policy:
+  retain_all_protected: true
+workforce_constraints:
+  minimum_available_fte_ratio: 0.80
+  high_absence_rate: 0.12
+  high_vacancy_rate: 0.10
+accessibility_constraints:
+  maximum_travel_distance_km: 30.0
+  minimum_public_transport_score: 2.5
+  minimum_accessible_transport_coverage: 0.70
+travel_penalties:
+  distance_warning_km: 20.0
+co_location_rules:
+  enforce_configured_requirements: true
+service_continuity_rules:
+  minimum_face_to_face_share: 0.70
+  manual_review_if_unallocated: true
+building_eligibility_rules:
+  high_cost_rank_limit: 2
+  maximum_actual_utilisation: 0.004
+  allow_whole_building_deactivation: false
+cost_components:
+  recurring:
+    - lease_cost
+    - maintenance_cost
+    - utility_cost
+    - security_cost
+    - cleaning_cost
+    - business_rates
+  transition_exposure_factor: 0.05
+  planned_capital_exposure_factor: 0.02
+  exit_exposure_factor: 0.03
+  relocation_exposure_factor: 0.04
+implementation_burden_weights:
+  room_action: 0.25
+  service_move: 0.35
+  accessibility_warning: 0.20
+  workforce_warning: 0.20
+risk_thresholds:
+  low_capacity_margin: 0.10
+  high_unallocated_demand: 0.01
+  low_confidence_manual_reviews: 2
+feasibility_statuses:
+  - feasible
+  - feasible_with_warnings
+  - manual_review_required
+  - infeasible
+  - not_evaluated
+scoring_weights:
+  capacity: 0.20
+  service_continuity: 0.15
+  workforce: 0.15
+  accessibility: 0.15
+  recurring_cost: 0.10
+  implementation_burden: 0.10
+  data_confidence: 0.10
+  risk: 0.05
+evidence_output:
+  directory: "outputs/scenarios"
+  overwrite_requires_rebuild: true
+rounding:
+  decimal_places: 4

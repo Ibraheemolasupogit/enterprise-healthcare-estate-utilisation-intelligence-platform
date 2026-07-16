@@ -1,0 +1,248 @@
+{
+  "asset_count": 39,
+  "assets": [
+    {
+      "kind": "portfolio",
+      "path": "README.md",
+      "sha256": "5a5d9e63a5d160db9fd59b69451114e138bac0ee124346d1819e7edbe4e25b40",
+      "size_bytes": 2978
+    },
+    {
+      "kind": "portfolio",
+      "path": "config/portfolio.yaml",
+      "sha256": "66b791ef7e226db53c335b5baa2b5950de9707f3f364cfc3d908b994e54feb41",
+      "size_bytes": 3087
+    },
+    {
+      "kind": "repository_documentation",
+      "path": "docs/evidence_index.md",
+      "sha256": "2b4336f31f35cea3b7a3f1e1089e45c80a326fbbf0037f89bc29ecebb8db8975",
+      "size_bytes": 1067
+    },
+    {
+      "kind": "repository_documentation",
+      "path": "docs/final_milestone_audit.md",
+      "sha256": "61946e2042716fffe3616f9e9932fe1ad4a8ded8a194d203e0a22ae2e9033f39",
+      "size_bytes": 1488
+    },
+    {
+      "kind": "repository_documentation",
+      "path": "docs/repository_structure.md",
+      "sha256": "777c00c6b85b007898a8bc38ec8bec36e4dbe04717bb0c164e9ddcb7fa3355fb",
+      "size_bytes": 1208
+    },
+    {
+      "kind": "repository_documentation",
+      "path": "docs/technical_decisions.md",
+      "sha256": "8bf279f1709301bef1077df699d78cf53cb4b220cde5c02cfbd609255a4b9840",
+      "size_bytes": 995
+    },
+    {
+      "kind": "handover",
+      "path": "handover/README.md",
+      "sha256": "6cd6e778d58113b36e9697003a0f0bcc2598c0b39f314d33dc38404c6ddf6902",
+      "size_bytes": 1024
+    },
+    {
+      "kind": "handover",
+      "path": "handover/analytical_controls.md",
+      "sha256": "d4fc36d439e0563d9694a82b69524011b437cc61ac18d81b51de86c8bd1a5291",
+      "size_bytes": 571
+    },
+    {
+      "kind": "handover",
+      "path": "handover/configuration_guide.md",
+      "sha256": "ed1c0f290887ddf4f9d7f7097c719babff29871f9fc3dc0e07545b40967f2a8d",
+      "size_bytes": 674
+    },
+    {
+      "kind": "handover",
+      "path": "handover/dashboard_runbook.md",
+      "sha256": "72413ecb4b57bb1293a6a13729c9b240f10f1a31134cb732e40b697ca670672a",
+      "size_bytes": 480
+    },
+    {
+      "kind": "handover",
+      "path": "handover/data_contracts.md",
+      "sha256": "f05f224130cac11619eb259cb76da44317dc9d97c588cd4d3436aac17fff41de",
+      "size_bytes": 510
+    },
+    {
+      "kind": "handover",
+      "path": "handover/evidence_regeneration.md",
+      "sha256": "1b68c46cc45657e8b30d419aacffa66606986cc5ccd61a1886cfa791c607e1a9",
+      "size_bytes": 454
+    },
+    {
+      "kind": "handover",
+      "path": "handover/governance_boundaries.md",
+      "sha256": "cc12dca3c5689f662f74ecf9e1ea534918a1c1233b8cac8e7fcb1e77960917d6",
+      "size_bytes": 583
+    },
+    {
+      "kind": "handover",
+      "path": "handover/handover_checklist.md",
+      "sha256": "b11d3edc03f7bad07c3e0024f31d043f6c2d1ffb94c12ad101c903eb13047d1d",
+      "size_bytes": 610
+    },
+    {
+      "kind": "handover",
+      "path": "handover/installation.md",
+      "sha256": "4e96437febff937c99814604faf43520aa139446aec20e0c8fc76a823bcf0a49",
+      "size_bytes": 422
+    },
+    {
+      "kind": "handover",
+      "path": "handover/known_issues.md",
+      "sha256": "7bc4192ffba28445c731c8977bc7dfb4d9e74b7d1b8ded2a497b1e84e149cd52",
+      "size_bytes": 471
+    },
+    {
+      "kind": "handover",
+      "path": "handover/local_operations.md",
+      "sha256": "8435ca8e9ae81e21d34a63d051ae648c6b6ba9ae5b4421de5d326d63f19008b0",
+      "size_bytes": 451
+    },
+    {
+      "kind": "handover",
+      "path": "handover/maintenance_backlog.md",
+      "sha256": "8105e1115f27bc33318e60c9201cedcfc368caf553b794f33db8b4cd254f614b",
+      "size_bytes": 526
+    },
+    {
+      "kind": "handover",
+      "path": "handover/pipeline_runbook.md",
+      "sha256": "1f8587cfd82aaf50b3536d054a2524b8dcb0d35617bf6368844730105dfeb027",
+      "size_bytes": 766
+    },
+    {
+      "kind": "handover",
+      "path": "handover/security_and_privacy.md",
+      "sha256": "f1f091d5ce6bd29889e7f6926a521197274368d456857524514853b103f8b2d0",
+      "size_bytes": 459
+    },
+    {
+      "kind": "handover",
+      "path": "handover/troubleshooting.md",
+      "sha256": "6815bd7e8038005db11ad222705874c5cd438fd520fd63f2d86348833b6c23bd",
+      "size_bytes": 547
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/README.md",
+      "sha256": "8009cafb244bee4ce92f3e4e1776da5df30cca2d62667de3aaa62bf2a1129c26",
+      "size_bytes": 1335
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/analytical_journey.md",
+      "sha256": "35595703992cfe9f2d337a6b14964cd21d30bfa01bcaa235c82ab9feeeace935",
+      "size_bytes": 918
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/architecture_overview.md",
+      "sha256": "ee99d85306bc0c76f8f3e92564be1765a77ad96a2a71f1292aed023f6b1a0a3d",
+      "size_bytes": 879
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/demonstration_guide.md",
+      "sha256": "c63b6962dcce173ea8e10c040580cbfaa1e9f90441f3d492b853233a8b1c7084",
+      "size_bytes": 904
+    },
+    {
+      "kind": "diagram",
+      "path": "portfolio/diagrams/01_end_to_end_architecture.mmd",
+      "sha256": "0d8b07d72b8ee40207c35b63fd70562c770584aa2723c3004bdafba41bfa3877",
+      "size_bytes": 432
+    },
+    {
+      "kind": "diagram",
+      "path": "portfolio/diagrams/02_evidence_lineage.mmd",
+      "sha256": "89744a8ddf1ae0f0037b111a349c50fc853094e83db688241e8832d46d54ba45",
+      "size_bytes": 367
+    },
+    {
+      "kind": "diagram",
+      "path": "portfolio/diagrams/03_governance_decision_flow.mmd",
+      "sha256": "71e97c50e0188ac46341f770f879151ca9ef2a5407320cbcfb38e21c3e74232e",
+      "size_bytes": 376
+    },
+    {
+      "kind": "diagram",
+      "path": "portfolio/diagrams/04_assurance_and_release_gates.mmd",
+      "sha256": "a83ffe818345495fcabf2773a41df0a4d014c7d810d74855e699b2dceea8110a",
+      "size_bytes": 287
+    },
+    {
+      "kind": "diagram",
+      "path": "portfolio/diagrams/05_dashboard_and_stakeholders.mmd",
+      "sha256": "bd03c03af94179d6f7a31a784d16036261c672032425268fd5439b6d5fc9f1fe",
+      "size_bytes": 431
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/engineering_assurance.md",
+      "sha256": "f3d2ab5a1c3fff7aecd4201dd6ea6e4d73ef5d31cc24d43bcff551bbf4fd1cdb",
+      "size_bytes": 720
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/evidence_index.md",
+      "sha256": "3bf20567eb9b34b186f6a22014e3735c5a132744be6cbaee6a31551e94b5e48a",
+      "size_bytes": 913
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/interview_talking_points.md",
+      "sha256": "eaf2bbf85a191f765713d333616492042100fceb90086e424876eed962e2efdc",
+      "size_bytes": 899
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/limitations_and_boundaries.md",
+      "sha256": "cf4f688f5fd55f7808266240fea86b63358a2377a6d48375142cfd5eefeced0f",
+      "size_bytes": 777
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/portfolio_summary.md",
+      "sha256": "b752d3a8831edb9f6c0ea5e8ac88dde5336e98769aed8c94d965561715702c77",
+      "size_bytes": 1004
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/project_case_study.md",
+      "sha256": "809159ff4fe2cb06131826863fe1f2e96750d2551ed5099a24247ddb347bff60",
+      "size_bytes": 1316
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/role_alignment.md",
+      "sha256": "684f4303bc7dc7532da3fb1683c1da6028a9b3109ee7de4a4b6155d155c2a2c4",
+      "size_bytes": 823
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/screenshots/README.md",
+      "sha256": "7bc7457928eb93300540721c392ce8677c547a2eb66afd260f3d1ac07d9f01de",
+      "size_bytes": 577
+    },
+    {
+      "kind": "portfolio",
+      "path": "portfolio/skills_demonstrated.md",
+      "sha256": "105785a8f9e76450d0fc563d36106cb62ef1d7c0d8c2485f4c1e6faa85254304",
+      "size_bytes": 833
+    }
+  ],
+  "checksum_algorithm": "sha256",
+  "contract_version": "1.0",
+  "framework_version": "m14-v1",
+  "generated_by": "estate_intelligence.portfolio",
+  "statuses": {
+    "approval_status": "not_approved",
+    "decision_status": "awaiting_governance_decision",
+    "release_readiness_status": "engineering_ready_with_conditions"
+  }
+}

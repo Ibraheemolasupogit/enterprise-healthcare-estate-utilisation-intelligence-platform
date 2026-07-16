@@ -1,0 +1,33 @@
+accessibility_record_id,origin_area,site_id,distance_km,estimated_travel_minutes,public_transport_score,deprivation_decile,accessible_transport_flag
+ACC-00001,Amber Fields,SITE-01,2.5,15,5,1,false
+ACC-00002,Birchmoor,SITE-01,4.2,21,5,2,true
+ACC-00003,Cobalt Vale,SITE-01,5.9,26,5,3,true
+ACC-00004,Dunlin Park,SITE-01,7.6,31,5,4,true
+ACC-00005,Elmstead,SITE-01,9.3,36,4,5,false
+ACC-00006,Fallow Green,SITE-01,11,42,4,6,true
+ACC-00007,Garnet Hill,SITE-01,12.7,47,4,7,true
+ACC-00008,Hazel Quay,SITE-01,14.4,52,4,8,true
+ACC-00009,Amber Fields,SITE-02,6.7,28,5,2,false
+ACC-00010,Birchmoor,SITE-02,8.4,34,4,3,true
+ACC-00011,Cobalt Vale,SITE-02,10.1,39,4,4,true
+ACC-00012,Dunlin Park,SITE-02,11.8,44,4,5,true
+ACC-00013,Elmstead,SITE-02,13.5,49,4,6,false
+ACC-00014,Fallow Green,SITE-02,15.2,55,4,7,true
+ACC-00015,Garnet Hill,SITE-02,16.9,60,3,8,true
+ACC-00016,Hazel Quay,SITE-02,18.6,65,3,9,true
+ACC-00017,Amber Fields,SITE-03,10.9,41,4,3,false
+ACC-00018,Birchmoor,SITE-03,12.6,47,4,4,true
+ACC-00019,Cobalt Vale,SITE-03,14.3,52,4,5,true
+ACC-00020,Dunlin Park,SITE-03,16,57,3,6,true
+ACC-00021,Elmstead,SITE-03,17.7,62,3,7,false
+ACC-00022,Fallow Green,SITE-03,19.4,68,3,8,true
+ACC-00023,Garnet Hill,SITE-03,21.1,73,3,9,true
+ACC-00024,Hazel Quay,SITE-03,22.8,78,3,10,true
+ACC-00025,Amber Fields,SITE-04,15.1,54,4,4,false
+ACC-00026,Birchmoor,SITE-04,16.8,60,3,5,true
+ACC-00027,Cobalt Vale,SITE-04,18.5,65,3,6,true
+ACC-00028,Dunlin Park,SITE-04,20.2,70,3,7,true
+ACC-00029,Elmstead,SITE-04,21.9,75,3,8,false
+ACC-00030,Fallow Green,SITE-04,23.6,81,3,9,true
+ACC-00031,Garnet Hill,SITE-04,25.3,119,2,10,false
+ACC-00032,Hazel Quay,SITE-04,27,126,2,1,false

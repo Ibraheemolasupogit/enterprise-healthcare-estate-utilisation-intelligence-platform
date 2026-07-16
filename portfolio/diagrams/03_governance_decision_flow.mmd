@@ -1,0 +1,9 @@
+flowchart TD
+    A[Analytical evidence generated] --> B{Simulation resilience acceptable?}
+    B -- No --> C[Record operational concerns]
+    B -- Yes --> D[Continue governance review]
+    C --> E[Keep caveats visible]
+    D --> E
+    E --> F[Decision status: awaiting_governance_decision]
+    F --> G[Approval status: not_approved]
+    G --> H[Review before any real action]

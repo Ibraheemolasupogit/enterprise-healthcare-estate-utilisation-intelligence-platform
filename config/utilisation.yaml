@@ -1,0 +1,83 @@
+contract_version: 1
+milestone_owner: "Milestone 5"
+framework_version: "m5-v1"
+purpose: "Deterministic estate-utilisation analytics configuration."
+quality_policy:
+  allowed_record_statuses:
+    - accepted
+    - accepted_with_warning
+  include_accepted_with_warning: true
+  manual_review:
+    high: exclude
+    warning: exclude
+    critical: exclude
+  rejected: exclude
+working_days:
+  - Monday
+  - Tuesday
+  - Wednesday
+  - Thursday
+  - Friday
+analysis_period:
+  start_date: "2024-04-01"
+  end_date: "2026-03-31"
+standard_opening:
+  default_opening_time: "08:00"
+  default_closing_time: "18:00"
+time_bands:
+  early:
+    start: "07:00"
+    end: "09:00"
+    peak: false
+  morning_peak:
+    start: "09:00"
+    end: "12:00"
+    peak: true
+  midday:
+    start: "12:00"
+    end: "14:00"
+    peak: false
+  afternoon_peak:
+    start: "14:00"
+    end: "17:00"
+    peak: true
+  late:
+    start: "17:00"
+    end: "20:00"
+    peak: false
+formula_weights:
+  actual_occupied_utilisation: 0.35
+  attendance_utilisation: 0.25
+  contacts_per_available_hour_factor: 0.15
+  workforce_availability_factor: 0.15
+  cancellation_penalty_factor: 0.05
+  no_show_penalty_factor: 0.05
+thresholds:
+  persistent_under_utilisation: 0.35
+  persistence_window_months: 6
+  persistence_minimum_months_below_threshold: 4
+  minimum_observation_count: 3
+  peak_utilisation: 0.75
+  contingency_capacity_percentage: 0.10
+specialist_capacity:
+  exclude_protected_from_releasable: true
+  protected_room_types:
+    - diagnostic
+    - specialist
+cost_allocation:
+  included_components:
+    - lease_cost
+    - maintenance_cost
+    - utility_cost
+    - security_cost
+    - cleaning_cost
+    - business_rates
+  excluded_components:
+    - planned_capital_cost
+    - exit_cost
+    - relocation_cost
+rounding:
+  decimal_places: 4
+output:
+  directory: "outputs/utilisation"
+  overwrite_requires_rebuild: true

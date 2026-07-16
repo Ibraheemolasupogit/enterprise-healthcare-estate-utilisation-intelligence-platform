@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pull-request-assurance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            requirements-dev.txt
+      - name: Install package and development dependencies
+        run: python -m pip install -e . -r requirements-dev.txt
+      - name: Fast assurance
+        run: make assurance-fast
+      - name: Test suite
+        run: python -m pytest
+      - name: Whitespace check
+        run: git diff --check
+
+  full-assurance:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            requirements-dev.txt
+      - name: Install package and development dependencies
+        run: python -m pip install -e . -r requirements-dev.txt
+      - name: Full deterministic assurance
+        run: make assurance-full
+      - name: Release evidence verification
+        run: make release-evidence verify-release-evidence
+      - name: Confirm no generated CI diff
+        run: git diff --check

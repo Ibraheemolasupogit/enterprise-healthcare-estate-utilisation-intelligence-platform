@@ -1,0 +1,151 @@
+contract_version: 1
+milestone_owner: "Milestone 6"
+framework_version: "m6-v1"
+purpose: "Deterministic demand-forecasting framework configuration."
+reference_date: "2026-03-31"
+forecast_grain: "month"
+forecast_horizon: 6
+minimum_history_periods: 12
+minimum_non_zero_periods: 6
+maximum_missing_period_ratio: 0.25
+intermittency_thresholds:
+  baseline_only_average_interval: 4.0
+  sparse_non_zero_ratio: 0.25
+validation_strategy: "expanding_window"
+initial_training_periods: 15
+validation_horizon: 3
+rolling_step: 3
+model_catalogue:
+  - model_id: "naive"
+    model_type: "baseline"
+    parameters: {}
+    minimum_periods: 1
+    requires_seasonality: false
+    requires_non_constant: false
+  - model_id: "seasonal_naive"
+    model_type: "baseline"
+    parameters: {}
+    minimum_periods: 12
+    requires_seasonality: true
+    requires_non_constant: false
+  - model_id: "moving_average"
+    model_type: "baseline"
+    parameters:
+      window: 3
+    minimum_periods: 3
+    requires_seasonality: false
+    requires_non_constant: false
+  - model_id: "drift"
+    model_type: "baseline"
+    parameters: {}
+    minimum_periods: 3
+    requires_seasonality: false
+    requires_non_constant: true
+  - model_id: "simple_exponential_smoothing"
+    model_type: "statistical"
+    parameters:
+      alpha: 0.4
+    minimum_periods: 6
+    requires_seasonality: false
+    requires_non_constant: false
+  - model_id: "holt_linear"
+    model_type: "statistical"
+    parameters:
+      alpha: 0.5
+      beta: 0.2
+    minimum_periods: 8
+    requires_seasonality: false
+    requires_non_constant: true
+  - model_id: "holt_winters_additive"
+    model_type: "statistical"
+    parameters:
+      alpha: 0.4
+      beta: 0.1
+      gamma: 0.1
+    minimum_periods: 24
+    requires_seasonality: true
+    requires_non_constant: true
+selection_metric: "wape"
+secondary_metrics:
+  - "mae"
+  - "rmse"
+  - "bias"
+  - "signed_percentage_bias"
+  - "smape"
+  - "mase"
+prediction_interval_levels:
+  - 0.8
+  - 0.95
+seasonal_period: 12
+series_definitions:
+  - target: "scheduled_contacts"
+    entity_type: "estate"
+    source: "activity"
+    measure: "scheduled_contacts"
+    unit: "contacts"
+  - target: "completed_contacts"
+    entity_type: "estate"
+    source: "activity"
+    measure: "completed_contacts"
+    unit: "contacts"
+  - target: "face_to_face_contacts"
+    entity_type: "estate"
+    source: "activity"
+    measure: "face_to_face_contacts"
+    unit: "contacts"
+  - target: "remote_contacts"
+    entity_type: "estate"
+    source: "activity"
+    measure: "remote_contacts"
+    unit: "contacts"
+  - target: "face_to_face_room_hours"
+    entity_type: "estate"
+    source: "activity"
+    measure: "face_to_face_room_hours"
+    unit: "room_hours"
+  - target: "total_room_hour_demand"
+    entity_type: "estate"
+    source: "activity"
+    measure: "total_room_hour_demand"
+    unit: "room_hours"
+  - target: "scheduled_contacts_by_service"
+    entity_type: "service"
+    source: "activity"
+    measure: "scheduled_contacts"
+    unit: "contacts"
+  - target: "completed_contacts_by_service"
+    entity_type: "service"
+    source: "activity"
+    measure: "completed_contacts"
+    unit: "contacts"
+  - target: "face_to_face_contacts_by_service"
+    entity_type: "service"
+    source: "activity"
+    measure: "face_to_face_contacts"
+    unit: "contacts"
+  - target: "face_to_face_room_hours_by_service"
+    entity_type: "service"
+    source: "activity"
+    measure: "face_to_face_room_hours"
+    unit: "room_hours"
+  - target: "available_fte_by_service"
+    entity_type: "service"
+    source: "workforce"
+    measure: "available_fte"
+    unit: "fte"
+    optional: true
+  - target: "session_capacity_by_service"
+    entity_type: "service"
+    source: "workforce"
+    measure: "session_capacity"
+    unit: "sessions"
+    optional: true
+fallback_policy:
+  ineligible_series_model: "naive"
+  undefined_primary_metric: "prefer_naive"
+  model_failure: "record_failure_and_continue"
+evidence_output:
+  directory: "outputs/forecasting"
+  overwrite_requires_rebuild: true
+rounding:
+  decimal_places: 4

@@ -1,0 +1,14 @@
+contract_version: 1
+milestone_owner: "Milestone 1"
+purpose: "Future operational and evidence risk threshold contract."
+data_boundary: "synthetic-only"
+risk_thresholds:
+  consumed_from_milestone: 10
+  planned_dimensions:
+    - "service_continuity"
+    - "patient_access"
+    - "workforce_feasibility"
+    - "evidence_quality"
+    - "implementation_reversibility"
+  note: "No risk scoring implementation is provided in Milestone 1."
+

@@ -1,0 +1,100 @@
+contract_version: 1
+milestone_owner: Milestone 13
+framework_version: m13-v1
+required_milestones:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+required_run_types:
+  ingestion: evidence_ingestion_runs
+  quality: evidence_quality_runs
+  utilisation: evidence_utilisation_runs
+  forecast: evidence_forecast_runs
+  scenario: evidence_scenario_runs
+  optimisation: evidence_optimisation_runs
+  simulation: evidence_simulation_runs
+  financial: evidence_financial_runs
+  communication: evidence_communication_runs
+quality_thresholds:
+  maximum_required_failures: 0
+  allow_required_warnings: true
+coverage_threshold: 85
+required_test_groups:
+  - unit
+  - contract
+  - integration
+  - end_to_end
+configuration_checks:
+  required_files:
+    - settings.yaml
+    - data_contracts.yaml
+    - data_quality.yaml
+    - utilisation.yaml
+    - forecasting.yaml
+    - scenarios.yaml
+    - optimisation.yaml
+    - simulation.yaml
+    - finance.yaml
+    - communication.yaml
+    - assurance.yaml
+sql_checks:
+  expected_latest_migration: 14
+  required_views: 7
+documentation_checks:
+  required_docs:
+    - assurance_framework.md
+    - ci_cd_strategy.md
+    - release_gates.md
+    - reproducibility_assurance.md
+    - security_assurance.md
+    - release_evidence.md
+    - developer_quality_workflow.md
+repository_checks:
+  required_directories:
+    - src/estate_intelligence/assurance
+    - tests/unit
+    - tests/integration
+    - tests/contract
+    - tests/end_to_end
+security_checks:
+  secret_patterns:
+    - AKIA[0-9A-Z]{16}
+    - ghp_[A-Za-z0-9_]{36,}
+    - "-----BEGIN PRIVATE KEY-----"
+    - "(?i)password\\s*="
+    - "(?i)bearer\\s+[A-Za-z0-9._-]{20,}"
+  allowed_placeholder_files:
+    - .env.example
+    - config/assurance.yaml
+    - tests/unit/test_security_scan.py
+reproducibility_checks:
+  independent_runs: 2
+  byte_compare_outputs: true
+evidence_checks:
+  require_manifest: true
+  require_checksums: true
+dashboard_checks:
+  require_read_only: true
+  require_local_bind: true
+communication_checks:
+  required_decision_status: awaiting_governance_decision
+  required_approval_status: not_approved
+release_gate_rules:
+  readiness_when_required_pass: engineering_ready_with_conditions
+  required_boundary_statement: Engineering release readiness does not constitute governance approval or operational implementation readiness.
+manifest_settings:
+  checksum_algorithm: sha256
+  exclude_self_checksum: true
+reporting:
+  output_dir: outputs/assurance
+rounding:
+  floats: 4

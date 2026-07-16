@@ -1,0 +1,9 @@
+environment: "staging"
+contract_version: 1
+milestone_owner: "Milestone 1"
+purpose: "Future validation environment contract; no staging service exists yet."
+runtime:
+  log_level: "INFO"
+  synthetic_data_only: true
+  production_like: false
+

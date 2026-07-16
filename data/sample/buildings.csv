@@ -1,0 +1,9 @@
+building_id,site_id,building_name,building_type,ownership_type,lease_start_date,lease_end_date,annual_lease_cost,annual_maintenance_cost,annual_energy_cost,floor_area_m2,accessibility_rating,condition_rating,active_flag
+BLD-001,SITE-01,Aurora Diagnostic Centre,acute_diagnostic,owned,,,0,316200,260400,6200,A,B,true
+BLD-002,SITE-02,Cedar Community Clinic,community_clinic,leased,2021-04-01,2029-03-31,199800,97200,63000,1800,B,A,true
+BLD-003,SITE-03,Harbour View Offices,administrative,owned,,,0,130000,83200,2600,C,C,true
+BLD-004,SITE-04,Juniper Treatment Wing,specialist_treatment,leased,2022-04-01,2031-03-31,90200,44000,37400,1100,B,D,true
+BLD-005,SITE-01,Lumen Imaging Hub,acute_diagnostic,owned,,,0,180600,155400,4200,A,B,true
+BLD-006,SITE-02,Meadowbridge Clinic,community_clinic,leased,2020-04-01,2029-03-31,128250,34200,37050,950,D,C,true
+BLD-007,SITE-03,Orion Administration House,administrative,owned,,,0,90300,71400,2100,C,B,true
+BLD-008,SITE-04,Willow Specialist Rooms,specialist_treatment,leased,2021-04-01,2031-03-31,113400,64400,32200,1400,A,A,true

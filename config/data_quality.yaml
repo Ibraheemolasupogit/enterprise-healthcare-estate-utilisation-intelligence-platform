@@ -1,0 +1,50 @@
+contract_version: 1
+milestone_owner: "Milestone 4"
+framework_version: "m4-v1"
+purpose: "Deterministic data-quality and reconciliation framework configuration."
+enabled_dimensions:
+  - completeness
+  - validity
+  - consistency
+  - uniqueness
+  - timeliness
+  - referential_integrity
+  - reconciliation
+severity_definitions:
+  info: "Informational finding or passed control."
+  warning: "Usable data with a documented caveat."
+  high: "Manual review required before downstream use."
+  critical: "Reject from downstream analytical processing."
+score_weights:
+  completeness: 1.0
+  validity: 1.0
+  consistency: 1.0
+  uniqueness: 1.0
+  timeliness: 0.75
+  referential_integrity: 1.25
+  reconciliation: 1.25
+status_thresholds:
+  pass: 95
+  pass_with_warnings: 85
+  manual_review_required: 70
+  fail: 0
+timeliness:
+  reference_date: "2026-03-31"
+  source_start_date: "2024-04-01"
+  source_end_date: "2026-03-31"
+reconciliation_tolerances:
+  booking_activity_contact_ratio_min: 0.40
+  booking_activity_contact_ratio_max: 1.25
+manual_review_policy:
+  default_status: "open"
+  completion_claim_allowed: false
+output:
+  directory: "outputs/data_quality"
+  overwrite_requires_rebuild: true
+intentional_defects:
+  DQ-0001: "DQ-ROM-UNI-001"
+  DQ-0002: "DQ-ROM-CMP-001"
+  DQ-0003: "DQ-BKG-CON-001"
+  DQ-0004: "DQ-FIN-CON-001"
+  DQ-0005: "DQ-WRK-CON-001"
+

@@ -1,0 +1,11 @@
+flowchart TD
+    ING[Ingestion run] --> DQR[Data-quality run]
+    DQR --> UTL[Utilisation run]
+    UTL --> FCT[Forecast run]
+    FCT --> SCN[Scenario run]
+    SCN --> OPT[Optimisation run]
+    OPT --> SIM[Simulation run]
+    SIM --> FIN[Financial run]
+    FIN --> COM[Communication run]
+    COM --> ASR[Assurance run]
+    ASR --> MAN[Release and portfolio manifests]

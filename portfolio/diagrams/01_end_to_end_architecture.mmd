@@ -1,0 +1,13 @@
+flowchart LR
+    A[Synthetic CSV sources] --> B[SQLite source and staging]
+    B --> C[Curated estate model]
+    C --> D[Quality and reconciliation]
+    D --> E[Utilisation analytics]
+    E --> F[Forecasting]
+    F --> G[Scenarios]
+    G --> H[Optimisation]
+    H --> I[Simulation]
+    I --> J[Financial analysis]
+    J --> K[Communication evidence]
+    K --> L[Assurance and release gates]
+    L --> M[Portfolio and handover pack]

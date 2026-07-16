@@ -1,0 +1,129 @@
+contract_version: 1
+milestone_owner: "Milestone 12"
+framework_version: "m12-v1"
+purpose: "Deterministic stakeholder communication and governance evidence."
+source_run_requirements:
+  ingestion: required
+  quality: required
+  utilisation: required
+  forecasting: required
+  scenarios: required
+  optimisation: required
+  simulation: required
+  financial: required
+audience_catalogue:
+  - audience_id: executive
+    label: "Executive leaders"
+    detail_level: concise
+    primary_need: "Decision context, balanced options, risk and next governance step."
+  - audience_id: clinical_operational
+    label: "Clinical and operational leaders"
+    detail_level: operational
+    primary_need: "Service continuity, room compatibility, workforce bottlenecks and mitigation tests."
+  - audience_id: finance
+    label: "Finance stakeholders"
+    detail_level: financial
+    primary_need: "Cost assumptions, cash flows, sensitivity and risk-adjusted realisability."
+  - audience_id: estates
+    label: "Estates and facilities stakeholders"
+    detail_level: estates
+    primary_need: "Building, room, lease, condition and release-condition evidence."
+  - audience_id: technical
+    label: "Technical and analytical reviewers"
+    detail_level: technical
+    primary_need: "Lineage, methods, uncertainty, constraints, checksums and limitations."
+message_priorities:
+  - "Analytical feasibility is not operational resilience."
+  - "Operational resilience is not financial realisability."
+  - "Financial realisability is not governance approval."
+  - "All products are synthetic decision-support evidence."
+evidence_inclusion_rules:
+  include_run_lineage: true
+  include_simulation_failures: true
+  include_risk_adjusted_finance: true
+  include_manual_review_items: true
+risk_language_rules:
+  resilience_failed_suffix: "not realisable without mitigation"
+  synthetic_boundary: "synthetic challenge scenario"
+status_language_rules:
+  mathematical_optimality: "lowest configured mathematical objective"
+  implementation_status: "not_approved"
+financial_language_rules:
+  saving: "nominal recurring cost difference"
+  financially_viable: "nominally financially positive under configured assumptions"
+  required_qualification: "not realisable without mitigation"
+simulation_language_rules:
+  failure_visibility: "all failed resilience rows remain visible"
+  workforce_bottleneck: "workforce was the dominant simulated bottleneck where supported by evidence"
+option_catalogue:
+  - option_id: "OPT-A"
+    source_case_id: "case_a_current_estate_baseline"
+    source_framework: "financial"
+    option_name: "Current estate baseline"
+  - option_id: "OPT-B"
+    source_case_id: "case_b_light_consolidation"
+    source_framework: "financial"
+    option_name: "Light consolidation"
+  - option_id: "OPT-C"
+    source_case_id: "case_c_site_consolidation"
+    source_framework: "financial"
+    option_name: "Site consolidation"
+  - option_id: "OPT-D"
+    source_case_id: "case_d_hybrid_redesign"
+    source_framework: "financial"
+    option_name: "Hybrid redesign"
+  - option_id: "OPT-E"
+    source_case_id: "case_e_flexible_room_optimisation"
+    source_framework: "financial"
+    option_name: "Flexible-room optimisation"
+  - option_id: "OPT-F"
+    source_case_id: "case_f_flexible_site_optimisation"
+    source_framework: "financial"
+    option_name: "Flexible-site optimisation"
+  - option_id: "OPT-G"
+    source_case_id: "case_g_hybrid_optimisation"
+    source_framework: "financial"
+    option_name: "Hybrid optimisation"
+challenge_catalogue:
+  - objection_summary: "Booking data does not represent actual use."
+    stakeholder_group: "Booking and operational teams"
+    evidence_required: "Booked, actual and effective utilisation evidence."
+  - objection_summary: "Staffing shortages distort current utilisation."
+    stakeholder_group: "Workforce planning"
+    evidence_required: "Workforce availability and simulation bottleneck evidence."
+  - objection_summary: "Specialist capacity cannot be released safely."
+    stakeholder_group: "Clinical service leads"
+    evidence_required: "Protected and specialist room status."
+  - objection_summary: "Future demand may be understated."
+    stakeholder_group: "Clinical and operational leaders"
+    evidence_required: "Forecast intervals and demand basis."
+  - objection_summary: "Transition costs may be incomplete."
+    stakeholder_group: "Finance stakeholders"
+    evidence_required: "Transition-cost components and sensitivity."
+  - objection_summary: "Patient travel may worsen."
+    stakeholder_group: "Patient and accessibility interests"
+    evidence_required: "Accessibility and service-move evidence."
+  - objection_summary: "Positive NPV may be overstated."
+    stakeholder_group: "Finance stakeholders"
+    evidence_required: "Risk-adjusted NPV, sensitivity and simulation linkage."
+  - objection_summary: "Mathematical feasibility does not prove operational deliverability."
+    stakeholder_group: "Executive decision-makers"
+    evidence_required: "Simulation resilience and workforce blocking evidence."
+  - objection_summary: "Remote activity assumptions may be too optimistic."
+    stakeholder_group: "Clinical and operational leaders"
+    evidence_required: "Remote demand and service continuity evidence."
+  - objection_summary: "Simulation assumptions may not reflect real service flow."
+    stakeholder_group: "Technical and analytical reviewers"
+    evidence_required: "Simulation engine, replications, thresholds and limitations."
+revision_rules:
+  required_revision_id: "REV-001"
+  initial_position: "financially attractive candidate"
+  revised_position: "nominally financially positive but not realisable without operational mitigation and further validation"
+decision_record_schema:
+  decision_status: "awaiting_governance_decision"
+  approval_status: "not_approved"
+output_paths:
+  directory: "outputs/communication"
+  stakeholder_directory: "stakeholder_evidence"
+rounding:
+  decimal_places: 4

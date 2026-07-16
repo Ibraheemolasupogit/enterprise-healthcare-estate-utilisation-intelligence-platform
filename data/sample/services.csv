@@ -1,0 +1,13 @@
+service_id,service_name,clinical_specialty,minimum_room_type,specialist_equipment_required,minimum_capacity,face_to_face_requirement,maximum_travel_distance_km,co_location_requirement,confidentiality_requirement,remote_eligible_rate,active_flag
+SVC-001,Northstar Respiratory Assessment,Respiratory,consultation,,3,high,25,none,enhanced,0.2,true
+SVC-002,Northstar Diabetes Review,Endocrinology,consultation,,3,medium,20,none,enhanced,0.35,true
+SVC-003,Northstar Imaging Ultrasound,Diagnostics,diagnostic,ultrasound,4,mandatory,35,diagnostic_support,standard,0,true
+SVC-004,Northstar Minor Procedures,Community Surgery,treatment,minor_procedure_couch,4,mandatory,30,sterile_store,strict,0,true
+SVC-005,Northstar Therapy Group,Therapies,meeting,,12,high,18,none,standard,0.15,true
+SVC-006,Northstar Child Development,Paediatrics,specialist,shielded_treatment_bay,5,mandatory,15,family_support,strict,0.05,true
+SVC-007,Northstar Frailty Clinic,Older People,consultation,,4,high,12,diagnostic_support,enhanced,0.1,true
+SVC-008,Northstar Administration Hub,Operations,office,,6,low,40,none,standard,0.75,true
+SVC-009,Northstar Staff Training,Workforce,meeting,,15,medium,50,none,standard,0.45,true
+SVC-010,Northstar Cardiac Diagnostics,Cardiology,diagnostic,ultrasound,4,mandatory,30,resus_access,strict,0,true
+SVC-011,Northstar Wound Care,Nursing,treatment,minor_procedure_couch,3,mandatory,18,clinical_waste,enhanced,0,true
+SVC-012,Northstar Virtual Navigation,Care Coordination,office,,4,low,60,none,enhanced,0.85,true

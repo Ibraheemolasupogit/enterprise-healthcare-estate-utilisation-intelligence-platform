@@ -1,0 +1,138 @@
+contract_version: 1
+milestone_owner: "Milestone 9"
+framework_version: "m9-v1"
+purpose: "Deterministic operational capacity and room-flow simulation evidence."
+engine: "standard_library_discrete_event"
+engine_version: "event-heap-v1"
+master_seed: 90210
+replications: 30
+warm_up_period: 0
+simulation_horizon: 10
+time_unit: "minutes"
+working_days_per_month: 20
+source_run_requirements:
+  ingestion: required
+  quality: required
+  utilisation: required
+  forecasting: required
+  scenarios: required
+  optimisation: required
+allocation_sources:
+  baseline_case_id: "current_estate"
+  light_consolidation_scenario_id: "light_consolidation"
+  flexible_room_optimisation_case_id: "flexible_room"
+  hybrid_optimisation_case_id: "hybrid"
+experiment_catalogue:
+  - experiment_id: "normal_operations"
+    label: "Normal operations"
+    demand_multiplier: 1.0
+    workforce_multiplier: 1.0
+    duration_multiplier: 1.0
+    specialist_room_capacity_multiplier: 1.0
+  - experiment_id: "peak_demand"
+    label: "Peak demand"
+    demand_multiplier: 1.35
+    workforce_multiplier: 1.0
+    duration_multiplier: 1.0
+    specialist_room_capacity_multiplier: 1.0
+  - experiment_id: "workforce_absence"
+    label: "Workforce absence"
+    demand_multiplier: 1.0
+    workforce_multiplier: 0.72
+    duration_multiplier: 1.0
+    specialist_room_capacity_multiplier: 1.0
+  - experiment_id: "longer_contact_duration"
+    label: "Longer contact duration"
+    demand_multiplier: 1.0
+    workforce_multiplier: 1.0
+    duration_multiplier: 1.35
+    specialist_room_capacity_multiplier: 1.0
+  - experiment_id: "combined_stress"
+    label: "Combined stress"
+    demand_multiplier: 1.35
+    workforce_multiplier: 0.72
+    duration_multiplier: 1.35
+    specialist_room_capacity_multiplier: 1.0
+  - experiment_id: "specialist_room_disruption"
+    label: "Specialist-room disruption"
+    demand_multiplier: 1.0
+    workforce_multiplier: 1.0
+    duration_multiplier: 1.0
+    specialist_room_capacity_multiplier: 0.65
+arrival_process:
+  process: "scheduled_deterministic_with_lateness"
+  forecast_target: "face_to_face_room_hours_by_service"
+  spread: "even_by_day_with_seeded_jitter"
+  lateness_minutes_min: 0
+  lateness_minutes_mode: 4
+  lateness_minutes_max: 18
+  reconciliation_tolerance_contacts: 1
+service_time_distributions:
+  default_distribution: "triangular"
+  default_min_minutes: 15
+  default_mode_minutes: 30
+  default_max_minutes: 60
+  cap_minutes: 180
+  service_overrides:
+    diagnostic:
+      min_minutes: 20
+      mode_minutes: 45
+      max_minutes: 90
+    treatment:
+      min_minutes: 30
+      mode_minutes: 60
+      max_minutes: 120
+    meeting:
+      min_minutes: 45
+      mode_minutes: 75
+      max_minutes: 150
+cancellation_rules:
+  enabled: true
+  probability: 0.04
+no_show_rules:
+  enabled: true
+  probability: 0.03
+late_start_rules:
+  enabled: true
+  probability: 0.18
+session_overrun_rules:
+  overtime_grace_minutes: 15
+workforce_availability:
+  capacity_basis: "forecast_session_capacity_by_service"
+  minimum_daily_contacts: 1
+  absence_multiplier_floor: 0.25
+room_capacity:
+  opening_default: "08:00"
+  closing_default: "18:00"
+  capacity_multiplier_default: 1.0
+priority_rules:
+  enabled: false
+  field: "none"
+queue_discipline: "fifo"
+contingency_policy:
+  planned_idle_fraction: 0.15
+  minimum_contingency_remaining: 0.05
+demand_shocks:
+  peak_factor: 1.35
+workforce_shocks:
+  absence_factor: 0.72
+duration_shocks:
+  duration_factor: 1.35
+equipment_downtime:
+  specialist_room_capacity_factor: 0.65
+performance_thresholds:
+  maximum_mean_wait_minutes: 20.0
+  maximum_p95_wait_minutes: 45.0
+  minimum_completion_rate: 0.92
+  maximum_room_occupancy: 0.92
+  maximum_overtime_minutes: 60.0
+  maximum_unserved_contacts: 0
+  minimum_contingency_remaining: 0.05
+confidence_interval:
+  method: "normal_approximation"
+  level: 0.95
+evidence_output:
+  directory: "outputs/simulation"
+  overwrite_requires_rebuild: true
+rounding:
+  decimal_places: 4

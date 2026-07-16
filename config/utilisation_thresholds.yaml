@@ -1,0 +1,33 @@
+contract_version: 1
+milestone_owner: "Milestone 5"
+purpose: "Configured thresholds for deterministic utilisation analytics."
+data_boundary: "synthetic-only"
+definitions:
+  booked_utilisation:
+    status: "implemented"
+    description: "Booked hours compared with available room hours."
+  actual_utilisation:
+    status: "implemented"
+    description: "Observed occupied hours compared with available room hours."
+  attendance_utilisation:
+    status: "implemented"
+    description: "Attended clinical activity compared with booked capacity."
+  effective_clinical_utilisation:
+    status: "implemented"
+    description: "Clinically useful occupied time after exclusions."
+  persistent_under_utilisation:
+    status: "implemented"
+    description: "Sustained low use across a configured review period."
+  protected_specialist_capacity:
+    status: "implemented"
+    description: "Capacity preserved for specialist rooms or services."
+  contingency_capacity:
+    status: "implemented"
+    description: "Capacity retained for resilience and operational shocks."
+thresholds:
+  persistent_under_utilisation: 0.35
+  persistence_window_months: 6
+  persistence_minimum_months_below_threshold: 4
+  minimum_observation_count: 3
+  peak_utilisation: 0.75
+  contingency_capacity_percentage: 0.10

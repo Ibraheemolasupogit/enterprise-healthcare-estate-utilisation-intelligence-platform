@@ -1,0 +1,87 @@
+contract_version: "1.0"
+milestone_owner: "Milestone 14"
+framework_version: "m14-v1"
+purpose: "Final handover and portfolio pack validation without changing analytical evidence."
+required_statuses:
+  decision_status: "awaiting_governance_decision"
+  approval_status: "not_approved"
+  release_readiness_status: "engineering_ready_with_conditions"
+required_portfolio_assets:
+  - "portfolio/README.md"
+  - "portfolio/portfolio_summary.md"
+  - "portfolio/project_case_study.md"
+  - "portfolio/architecture_overview.md"
+  - "portfolio/analytical_journey.md"
+  - "portfolio/engineering_assurance.md"
+  - "portfolio/skills_demonstrated.md"
+  - "portfolio/role_alignment.md"
+  - "portfolio/demonstration_guide.md"
+  - "portfolio/interview_talking_points.md"
+  - "portfolio/evidence_index.md"
+  - "portfolio/limitations_and_boundaries.md"
+  - "portfolio/screenshots/README.md"
+  - "portfolio/manifests/portfolio_manifest.json"
+  - "portfolio/manifests/portfolio_manifest.csv"
+required_handover_assets:
+  - "handover/README.md"
+  - "handover/installation.md"
+  - "handover/local_operations.md"
+  - "handover/pipeline_runbook.md"
+  - "handover/dashboard_runbook.md"
+  - "handover/troubleshooting.md"
+  - "handover/evidence_regeneration.md"
+  - "handover/configuration_guide.md"
+  - "handover/data_contracts.md"
+  - "handover/analytical_controls.md"
+  - "handover/security_and_privacy.md"
+  - "handover/governance_boundaries.md"
+  - "handover/maintenance_backlog.md"
+  - "handover/handover_checklist.md"
+  - "handover/known_issues.md"
+required_diagrams:
+  - "portfolio/diagrams/01_end_to_end_architecture.mmd"
+  - "portfolio/diagrams/02_evidence_lineage.mmd"
+  - "portfolio/diagrams/03_governance_decision_flow.mmd"
+  - "portfolio/diagrams/04_assurance_and_release_gates.mmd"
+  - "portfolio/diagrams/05_dashboard_and_stakeholders.mmd"
+required_docs:
+  - "docs/repository_structure.md"
+  - "docs/final_milestone_audit.md"
+  - "docs/technical_decisions.md"
+  - "docs/evidence_index.md"
+optional_screenshots:
+  capture_status: "manual_capture_required"
+  expected_files:
+    - "01_executive_overview.png"
+    - "02_estate_portfolio.png"
+    - "03_room_utilisation.png"
+    - "04_forecasting.png"
+    - "05_scenario_comparison.png"
+    - "06_optimisation.png"
+    - "07_simulation_resilience.png"
+    - "08_evidence_limitations.png"
+manifest_settings:
+  checksum_algorithm: "sha256"
+  exclude_self_checksum: true
+  json_path: "portfolio/manifests/portfolio_manifest.json"
+  csv_path: "portfolio/manifests/portfolio_manifest.csv"
+language_controls:
+  forbidden:
+    - "approved recommendation"
+    - "cash saving"
+    - "guaranteed saving"
+    - "deployment ready"
+    - "production ready"
+    - "real clinical record"
+  permitted:
+    - "synthetic"
+    - "nominal financial impact"
+    - "awaiting_governance_decision"
+    - "not_approved"
+    - "engineering_ready_with_conditions"
+validation_rules:
+  disallow_absolute_local_paths: true
+  require_synthetic_boundary: true
+  require_screenshot_fallback_readme: true
+  require_mermaid_graph_declaration: true
+  require_all_milestones_in_final_audit: true

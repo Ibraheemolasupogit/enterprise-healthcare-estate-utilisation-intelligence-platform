@@ -1,0 +1,12 @@
+contract_version: 1
+milestone_owner: "Milestone 1"
+purpose: "Future finance analysis configuration contract."
+data_boundary: "synthetic-only"
+finance:
+  consumed_from_milestone: 9
+  currency: "GBP"
+  analysis_boundary: "No actual savings or financial recommendations are produced in Milestone 1."
+  planned_cost_categories:
+    - "estate_running_cost"
+    - "transition_cost"
+    - "service_disruption_cost"

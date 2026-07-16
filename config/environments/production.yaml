@@ -1,0 +1,10 @@
+environment: "production"
+contract_version: 1
+milestone_owner: "Milestone 1"
+purpose: "Future production configuration contract; no real production environment exists."
+runtime:
+  log_level: "WARNING"
+  synthetic_data_only: true
+  production_like: false
+governance_note: "A production configuration file does not imply deployment approval."
+

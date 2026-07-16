@@ -1,0 +1,35 @@
+contract_version: 1
+milestone_owner: "Milestone 1"
+purpose: "Future source dataset catalogue. No records are defined here."
+data_boundary: "synthetic-only"
+milestone_2_generation:
+  configuration_file: "config/synthetic_data.yaml"
+  canonical_output_format: "csv"
+  metadata_files:
+    - "generation_metadata.json"
+    - "data_quality_issues.json"
+future_sources:
+  buildings:
+    description: "Synthetic estate building master data."
+    consumed_from_milestone: 2
+  rooms:
+    description: "Synthetic room inventory and room attributes."
+    consumed_from_milestone: 2
+  services:
+    description: "Synthetic clinical or operational service catalogue."
+    consumed_from_milestone: 2
+  bookings:
+    description: "Synthetic room booking events."
+    consumed_from_milestone: 2
+  clinical_activity:
+    description: "Synthetic activity and attendance evidence."
+    consumed_from_milestone: 2
+  workforce:
+    description: "Synthetic workforce availability and service constraints."
+    consumed_from_milestone: 2
+  finance:
+    description: "Synthetic cost and budget reference evidence."
+    consumed_from_milestone: 2
+  accessibility:
+    description: "Synthetic patient access and accessibility reference evidence."
+    consumed_from_milestone: 2

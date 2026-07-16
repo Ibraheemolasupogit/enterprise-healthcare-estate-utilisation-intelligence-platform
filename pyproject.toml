@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling>=1.25,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "estate-intelligence"
+version = "0.1.0"
+description = "Foundation for an enterprise healthcare estate utilisation intelligence platform."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "Estate Intelligence Contributors" }]
+dependencies = [
+  "pydantic>=2.8,<3",
+  "pydantic-settings>=2.4,<3",
+  "PyYAML>=6.0,<7",
+  "scipy>=1.11,<2",
+  "streamlit>=1.40,<2",
+  "typer>=0.12,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2,<9",
+  "pytest-cov>=5,<7",
+  "ruff>=0.5,<1",
+  "mypy>=1.10,<2",
+  "types-PyYAML>=6.0,<7",
+]
+
+[project.scripts]
+estate-intelligence = "estate_intelligence.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/estate_intelligence", "dashboard"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "RUF"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+mypy_path = "src"
+warn_unreachable = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers --strict-config --cov=estate_intelligence --cov-report=term-missing"
+pythonpath = ["src"]
+
+[tool.coverage.run]
+branch = true
+source = ["estate_intelligence"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 85

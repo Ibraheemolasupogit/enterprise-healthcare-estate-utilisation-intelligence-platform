@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a defect in foundation code, documentation, or configuration.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is not working as expected?
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Describe the milestone or developer workflow affected.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Include commands, logs, or test failures where relevant.
+

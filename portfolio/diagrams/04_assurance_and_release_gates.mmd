@@ -1,0 +1,9 @@
+flowchart LR
+    A[Static checks] --> G[Release gates]
+    B[Tests] --> G
+    C[Configuration contracts] --> G
+    D[Documentation checks] --> G
+    E[Security scan] --> G
+    F[Reproducibility checks] --> G
+    G --> H[engineering_ready_with_conditions]
+    H --> I[Portfolio manifest]

@@ -1,0 +1,26 @@
+contract_version: 1
+milestone_owner: "Milestone 2"
+purpose: "Deterministic synthetic source-data generation configuration."
+synthetic_organisation:
+  name: "Northstar Community Health Partnership"
+  notice: "Entirely fictional; no real patient, employee, organisation, estate or finance data."
+generation:
+  master_seed: 20260714
+  reference_date: "2026-03-31"
+  start_date: "2024-04-01"
+  end_date: "2026-03-31"
+  site_count: 4
+  building_count: 8
+  room_count: 56
+  service_count: 12
+  booking_count: 1440
+  workforce_grain: "monthly"
+  financial_years: ["2023/24", "2024/25", "2025/26"]
+  sample_data_scale: "small"
+quality_issues:
+  enabled: true
+  planned_issue_count: 5
+paths:
+  sample_output_dir: "data/sample"
+  runtime_output_dir: "data/raw"
+

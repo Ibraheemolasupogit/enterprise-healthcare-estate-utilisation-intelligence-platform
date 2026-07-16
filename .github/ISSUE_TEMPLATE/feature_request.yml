@@ -1,0 +1,27 @@
+name: Feature request
+description: Propose a milestone-aligned enhancement.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Need
+      description: What problem would this solve?
+    validations:
+      required: true
+  - type: dropdown
+    id: milestone
+    attributes:
+      label: Target milestone
+      options:
+        - Milestone 1
+        - Future milestone
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Boundaries
+      description: Confirm synthetic-data and decision-governance constraints.
+

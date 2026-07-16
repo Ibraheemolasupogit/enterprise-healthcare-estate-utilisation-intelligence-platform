@@ -1,0 +1,137 @@
+contract_version: 1
+milestone_owner: "Milestone 8"
+framework_version: "m8-v1"
+purpose: "Deterministic constrained estate allocation optimisation configuration."
+solver: "scipy_milp_highs"
+solver_time_limit_seconds: 20
+solver_mip_gap: 0.0
+solver_threads: 1
+analysis_horizon_months: 6
+source_run_requirements:
+  ingestion: required
+  quality: required
+  utilisation: required
+  forecasting: required
+  scenarios: required
+planning_demand_basis:
+  target: "face_to_face_room_hours_by_service"
+  interval_basis: "upper_80"
+  point_fallback: true
+allocation_grain: "service_month_room"
+candidate_source:
+  rooms: "quality_gated_active_rooms"
+  compatibility: "scenario_compatibility_and_configured_rules"
+  demand: "forecast_service_month_upper_interval"
+optimisation_cases:
+  - case_id: "current_estate"
+    label: "Current-estate constrained allocation"
+    allow_room_deactivation: false
+    allow_site_movement: false
+    allow_remote_delivery: false
+  - case_id: "flexible_room"
+    label: "Flexible room activation"
+    allow_room_deactivation: true
+    allow_site_movement: false
+    allow_remote_delivery: false
+  - case_id: "flexible_site"
+    label: "Flexible site allocation"
+    allow_room_deactivation: false
+    allow_site_movement: true
+    allow_remote_delivery: false
+  - case_id: "hybrid"
+    label: "Hybrid allocation"
+    allow_room_deactivation: true
+    allow_site_movement: true
+    allow_remote_delivery: true
+objective_weights:
+  retained_recurring_estate_cost: 1.0
+  room_activation_cost: 1.0
+  service_relocation_cost: 1.0
+  travel_penalty: 1.0
+  disruption_penalty: 1.0
+  underutilisation_penalty: 1.0
+  unmet_demand_penalty: 1.0
+  workforce_warning_penalty: 1.0
+  accessibility_warning_penalty: 1.0
+cost_coefficients:
+  room_activation_cost_per_room: 25.0
+  service_relocation_cost_per_move: 7500.0
+  travel_penalty_per_km_hour: 2.0
+  disruption_penalty_per_moved_hour: 15.0
+  underutilisation_penalty_per_unused_hour: 0.25
+  unmet_demand_penalty_per_hour: 1000000.0
+  workforce_warning_penalty: 25000.0
+  accessibility_warning_penalty: 25000.0
+  deterministic_tie_breaker: 0.000001
+capacity_buffer: 0.10
+contingency_capacity: 0.15
+protected_capacity_policy:
+  retain_all_protected: true
+specialist_capacity_policy:
+  allow_specialist_release: false
+  require_equipment_match: true
+room_compatibility_rules:
+  enforce_room_type: true
+  enforce_capacity: true
+  enforce_specialist_equipment: true
+  require_accessible_room_for_strict_confidentiality: false
+service_continuity_rules:
+  minimum_face_to_face_share: 0.70
+  prohibit_unmet_mandatory_demand: false
+  maximum_moved_share: 0.25
+workforce_constraints:
+  minimum_available_fte_ratio: 0.80
+  restrict_unproven_site_moves: true
+accessibility_constraints:
+  maximum_travel_distance_km: 30.0
+  minimum_public_transport_score: 2.5
+  minimum_accessible_transport_coverage: 0.70
+travel_penalty_rules:
+  home_site_distance_km: 0.0
+  cross_site_distance_km: 12.0
+co_location_rules:
+  enforce_configured_requirements: true
+confidentiality_rules:
+  strict_requires_room_types:
+    - "diagnostic"
+    - "specialist"
+    - "treatment"
+  enhanced_requires_room_types:
+    - "diagnostic"
+    - "specialist"
+    - "treatment"
+    - "consultation"
+remote_delivery_limits:
+  enabled: true
+  maximum_remote_share: 0.20
+building_activation_rules:
+  allow_potential_release: true
+  release_requires_all_rooms_inactive: true
+room_activation_rules:
+  protected_rooms_always_active: true
+relocation_rules:
+  maximum_services_moved_per_case: 3
+disruption_penalties:
+  moved_service_multiplier: 1.0
+underutilisation_penalties:
+  apply_to_active_unused_capacity: true
+infeasibility_diagnostics:
+  emit_candidate_shortfalls: true
+  emit_capacity_shortfalls: true
+  emit_protected_capacity_conflicts: true
+  emit_workforce_accessibility_blockers: true
+feasibility_statuses:
+  - optimal
+  - feasible
+  - feasible_with_slack
+  - infeasible
+  - unbounded
+  - solver_error
+  - time_limit_with_incumbent
+  - time_limit_without_solution
+  - not_run
+evidence_output:
+  directory: "outputs/optimisation"
+  overwrite_requires_rebuild: true
+rounding:
+  decimal_places: 4

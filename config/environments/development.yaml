@@ -1,0 +1,9 @@
+environment: "development"
+contract_version: 1
+milestone_owner: "Milestone 1"
+purpose: "Local development defaults only."
+runtime:
+  log_level: "DEBUG"
+  synthetic_data_only: true
+  production_like: false
+

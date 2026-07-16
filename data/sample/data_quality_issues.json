@@ -1,0 +1,66 @@
+{
+  "issues": [
+    {
+      "dataset": "rooms",
+      "description": "Duplicate room name within BLD-002 for future source-quality checks.",
+      "duplicate_business_key": "BLD-002|treatment 8",
+      "duplicate_group_members": [
+        "ROOM-0002",
+        "ROOM-0026"
+      ],
+      "expected_action": "manual_review",
+      "expected_detection_milestone": 3,
+      "expected_rule": "DQ-ROM-UNI-001",
+      "field": "room_name",
+      "intentional": true,
+      "issue_id": "DQ-0001",
+      "issue_type": "duplicate_label",
+      "record_identifier": "ROOM-0002",
+      "severity": "low"
+    },
+    {
+      "dataset": "rooms",
+      "description": "Blank optional equipment value retained from a fictional source extract.",
+      "expected_detection_milestone": 3,
+      "field": "specialist_equipment",
+      "intentional": true,
+      "issue_id": "DQ-0002",
+      "issue_type": "missing_optional_source_value",
+      "record_identifier": "ROOM-0018",
+      "severity": "low"
+    },
+    {
+      "dataset": "bookings",
+      "description": "One parseable attendance anomaly for future data-quality validation.",
+      "expected_detection_milestone": 3,
+      "field": "actual_attendance_count",
+      "intentional": true,
+      "issue_id": "DQ-0003",
+      "issue_type": "attendance_exceeds_planned",
+      "record_identifier": "BOOK-000025",
+      "severity": "medium"
+    },
+    {
+      "dataset": "finance",
+      "description": "Owned building carries a small lease-like charge requiring reconciliation.",
+      "expected_detection_milestone": 3,
+      "field": "lease_cost",
+      "intentional": true,
+      "issue_id": "DQ-0004",
+      "issue_type": "owned_building_lease_reconciliation",
+      "record_identifier": "FIN-00002",
+      "severity": "medium"
+    },
+    {
+      "dataset": "workforce",
+      "description": "Temporary bank cover makes available FTE exceed planned FTE in one record.",
+      "expected_detection_milestone": 3,
+      "field": "available_fte",
+      "intentional": true,
+      "issue_id": "DQ-0005",
+      "issue_type": "available_above_planned",
+      "record_identifier": "WRK-00007",
+      "severity": "low"
+    }
+  ]
+}
