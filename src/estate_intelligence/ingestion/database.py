@@ -2,14 +2,12 @@
 
 from __future__ import annotations
 
-import os
 import sqlite3
-import tempfile
 from pathlib import Path
 
 import yaml
 
-from estate_intelligence.utils.paths import repository_root
+from estate_intelligence.utils.paths import approved_test_temp_roots, repository_root
 
 
 def load_database_path(config_path: Path | None = None) -> Path:
@@ -31,8 +29,7 @@ def safe_database_path(path: Path) -> Path:
     approved = [
         (root / "data" / "processed").resolve(),
     ]
-    if os.environ.get("ESTATE_INTELLIGENCE_TEST_MODE") == "1":
-        approved.append(Path(tempfile.gettempdir()).resolve())
+    approved.extend(approved_test_temp_roots())
     if not any(resolved == base or resolved.is_relative_to(base) for base in approved):
         raise ValueError(f"Refusing unsafe database path: {resolved}")
     if resolved.suffix not in {".db", ".sqlite", ".sqlite3"}:

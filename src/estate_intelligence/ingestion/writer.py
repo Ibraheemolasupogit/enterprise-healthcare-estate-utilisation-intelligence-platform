@@ -8,7 +8,7 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
-from estate_intelligence.utils.paths import repository_root
+from estate_intelligence.utils.paths import approved_test_temp_roots, repository_root
 
 EXPORT_FILES = {
     "reconciliation_summary.csv": "SELECT * FROM evidence_reconciliation_summary ORDER BY dataset",
@@ -41,9 +41,8 @@ def safe_export_dir(path: Path) -> Path:
         (root / "outputs" / "simulation").resolve(),
         (root / "outputs" / "financial").resolve(),
         (root / "data" / "processed").resolve(),
-        Path("/private/tmp").resolve(),
-        Path("/var").resolve(),
     ]
+    approved.extend(approved_test_temp_roots())
     if not any(resolved == base or resolved.is_relative_to(base) for base in approved):
         raise ValueError(f"Refusing unsafe evidence export path: {resolved}")
     return resolved
